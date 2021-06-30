@@ -1,7 +1,7 @@
 require('dotenv').config();
 import axios from 'axios'
 
-import { JUPITER_URL, GATEWAYS } from '~/config'
+import { JUPITER_URL } from '~/config'
 
 const apiAxios = axios.create({
   baseURL: JUPITER_URL,
@@ -14,16 +14,15 @@ apiAxios.interceptors.response.use((response) => {
   return response.data;
 });
 
-const sendMoney = async (params) => {
-  const url = `/nxt?requestType=sendMoney&recipient=${params.receiver}&amountNQT=${params.amount}&message=${params.sender}&secretPhrase=${process.env.JUP_PASSPHRASE}&publicKey=${process.env.JUP_PUBLIC_KEY}&deadline=24&feeNQT=0`;
-  return await apiAxios.post(url)
+const getBlocks = async ({ firstIndex, lastIndex }) => {
+  return await apiAxios.get(`/nxt?requestType=getBlocks&firstIndex=${firstIndex}&lastIndex=${lastIndex}`)
 }
 
-const getTransaction = async (transaction) => {
-  return await apiAxios.get(`/nxt?requestType=getTransaction&transaction=${transaction}`)
+const getBlockchainStatus = async () => {
+  return await apiAxios.get(`/nxt?requestType=getBlockchainStatus`)
 }
 
 export {
-  sendMoney,
-  getTransaction
+  getBlocks,
+  getBlockchainStatus
 };

@@ -1,11 +1,10 @@
 
-import TransactionAPI from '~/routes/transaction';
+import DashboardAPI from '~/routes/dashboard';
 
 exports.assignRoutes = app => {
 
-  // * transaction API
-  app.get('/api/transactions', TransactionAPI.getTransactions);
-  app.get('/api/transactions/:_id', TransactionAPI.getTransactionById);
-  app.post('/api/transactions', TransactionAPI.addTransaction);
+  // * dashboard API
+  app.get('/api/init-dashboard', DashboardAPI.initDashboard);
+  app.get('/api/dashboard', DashboardAPI.getDashboard);
 }
 

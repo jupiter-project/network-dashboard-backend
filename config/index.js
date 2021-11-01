@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const JUPITER_URL = 'https://nodes.gojupiter.tech'
+const JUPITER_URL = 'nodes.jup.io'
 
 export {
   JUPITER_URL
